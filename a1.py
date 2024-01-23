@@ -5,37 +5,37 @@ def direc_list(myPath):  #list_dir contains ['L', '/home/algol/ics32/lectures']
         print(currentpath)
 
 
-def recursive_list(myPath):
-    for currentpath in myPath.iterdir():
+def recursive_list(myPath):  #searching for files inside a directory
+    for currentpath in myPath.iterdir(): 
         if currentpath.is_file():
             print(currentpath)
         elif currentpath.is_dir():
             print(currentpath)
             recursive_list(currentpath)
 
-def only_files(myPath):
+def only_files(myPath):    #searching for files in the path
     for currentpath in myPath.iterdir():
         if currentpath.is_file():
             print(currentpath)
 
-def file_search(myPath, filename):  #change the variable to filename
+def file_search(myPath, filename):  #searching for files by name
     for currentpath in myPath.iterdir():
         if currentpath.is_file() and currentpath.name.lower() == filename.lower():
             print(currentpath)
 
-def search_by_extension(myPath, ext):
+def search_by_extension(myPath, ext):  #searching for files by their extensions
     for currentpath in myPath.iterdir():
         if currentpath.is_file() and currentpath.suffix.lower() == ext.lower():
             print(currentpath)
 
-def search_by_extension_recursive(myPath, ext):
+def search_by_extension_recursive(myPath, ext): #searching for files by extensions recursively
     for currentpath in myPath.iterdir():
         if currentpath.is_file() and currentpath.suffix.lower() == ext.lower():
             print(currentpath)
         elif currentpath.is_dir():
             search_by_extension_recursive(currentpath, ext)
 
-def files_search_recursive(myPath, filename):
+def files_search_recursive(myPath, filename):  #searching for files by file names recursively
     for currentpath in myPath.iterdir():
         if currentpath.is_file() and currentpath.name.lower() == filename.lower():
             print(currentpath)
@@ -43,7 +43,7 @@ def files_search_recursive(myPath, filename):
             files_search_recursive(currentpath, filename)
 
 
-def main(Command):
+def main(Command):   #main function
     list_dir = Command.split()
     myPath = Path(list_dir[1])
     if len(list_dir) == 2:

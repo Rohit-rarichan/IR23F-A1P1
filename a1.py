@@ -23,6 +23,26 @@ def file_search(myPath, filename):  #change the variable to filename
         if currentpath.is_file() and currentpath.name.lower() == filename.lower():
             print(currentpath)
 
+def search_by_extension(myPath, ext):
+    for currentpath in myPath.iterdir():
+        if currentpath.is_file() and currentpath.suffix.lower() == ext.lower():
+            print(currentpath)
+
+def search_by_extension_recursive(myPath, ext):
+    for currentpath in myPath.iterdir():
+        if currentpath.is_file() and currentpath.suffix.lower() == ext.lower():
+            print(currentpath)
+        elif currentpath.is_dir():
+            search_by_extension_recursive(currentpath, ext)
+
+def files_search_recursive(myPath, filename):
+    for currentpath in myPath.iterdir():
+        if currentpath.is_file() and currentpath.name.lower() == filename.lower():
+            print(currentpath)
+        elif currentpath.is_dir():
+            files_search_recursive(currentpath, filename)
+
+
 def main(Command):
     list_dir = Command.split()
     myPath = Path(list_dir[1])
@@ -40,7 +60,13 @@ def main(Command):
         elif list_dir[2] == '-e':
             ext = list_dir[3]
             search_by_extension(myPath, ext)
-
+    elif len(list_dir) == 5:
+        if list_dir[2] == '-r' and list_dir[3] == '-s':
+            filename = list_dir[4]
+            files_search_recursive(myPath, filename)
+        elif list_dir[2] == '-r' and list_dir[3] == '-e':
+            ext = list_dir[4]
+            search_by_extension_recursive(myPath, ext)
 
 if __name__ == "__main__":
     while True:

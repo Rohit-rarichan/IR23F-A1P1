@@ -47,7 +47,7 @@ def main(Command):   #main function
     list_dir = Command.split()
     myPath = Path(list_dir[1])
     if len(list_dir) == 2:
-        direc_list(list_dir, myPath)
+        direc_list(myPath)
     elif len(list_dir) == 3:
         if list_dir[2] == '-r':
             recursive_list(myPath)
